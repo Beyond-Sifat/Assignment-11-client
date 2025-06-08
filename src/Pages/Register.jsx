@@ -1,7 +1,8 @@
 import React, { use, useState } from 'react';
 import { Link, useNavigate } from 'react-router';
-import { toast } from 'react-toastify';
+// import { toast } from 'react-toastify';
 import { AuthContext } from '../Context/AuthContext';
+import { toast } from 'react-toastify';
 
 const Register = () => {
     const [error, setError] = useState('');
