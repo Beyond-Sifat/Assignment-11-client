@@ -37,11 +37,11 @@ const Navbar = () => {
 
 
         <li><NavLink to='/'>Home</NavLink></li>
-        <li><NavLink to='/all-plants'>All Plants</NavLink></li>
+        {/* <li><NavLink to='/all-plants'>All </NavLink></li> */}
         {user ? (
             <>
-                <li><NavLink to='/add-plant'>Add Plant</NavLink></li>
-                <li><NavLink to='/my-plants'>My Plants</NavLink></li>
+                <li><NavLink to='/add-food'>Add Food</NavLink></li>
+                {/* <li><NavLink to='/my-plants'>My Plants</NavLink></li> */}
             </>
         ) : (
             <li><NavLink to='/register'>Register</NavLink></li>
@@ -53,7 +53,7 @@ const Navbar = () => {
     return (
         <div className="navbar bg-base-100 bg-gradient-to-r from-blue-500 via-sky-500 to-indigo-400 shadow-sm text-white">
             <div className="navbar-start">
-                <a className="btn btn-ghost text-xl">HappyPlant</a>
+                <a className="btn btn-ghost text-xl">GoodFood</a>
             </div>
             <div className="navbar-center hidden lg:flex">
                 <ul className="menu menu-horizontal px-1">
