@@ -33,7 +33,7 @@ const AddFood = () => {
 
 
     return (
-        <div>
+        <div className='my-10'>
             <h2 className='text-center text-3xl font-semibold'>Add New Food Item</h2>
             <form onSubmit={handleAddFood}>
                 <input type="text" name="image" placeholder="Image URL" required className="input input-bordered w-full" />
