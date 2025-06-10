@@ -3,7 +3,6 @@ import { Link } from 'react-router';
 
 const NearlyExpiredCard = ({ food }) => {
     const { _id, image, title, category, quantity, expiryDate } = food;
-    console.log(_id)
     return (
         <div className="card shadow-md p-4 border rounded-xl bg-yellow-50">
             <img src={image} alt={title} className="rounded-xl h-40 w-full object-cover mb-2" />

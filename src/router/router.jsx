@@ -7,6 +7,8 @@ import Login from "../Pages/Login";
 import Register from "../Pages/Register";
 import AddFood from "../Pages/AddFood";
 import PrivateRoutes from "../Route/PrivateRoute";
+import Fridge from "../Pages/Fridge";
+import FoodDetails from "../Pages/FoodDetails";
 
 const router = createBrowserRouter([
     {
@@ -27,12 +29,18 @@ const router = createBrowserRouter([
                 Component: Register
             },
             {
+                path: '/fridge ',
+                loader: ()=>fetch('http://localhost:3000/foods'),
+                Component: Fridge
+            },
+            {
                 path: '/add-food',
                 element: <PrivateRoutes><AddFood></AddFood></PrivateRoutes>
             },
             {
-                path: '/food-details',
-                element: <PrivateRoutes><AddFood></AddFood></PrivateRoutes>
+                path: '/food-details/:id',
+                loader:({params})=>fetch(`http://localhost:3000/foods/${params.id}`),
+                element: <PrivateRoutes><FoodDetails></FoodDetails></PrivateRoutes>
             },
         ]
     },
