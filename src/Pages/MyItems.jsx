@@ -1,12 +1,43 @@
 import React, { useContext, useEffect, useState } from 'react';
 import { AuthContext } from '../Context/AuthContext';
+import Swal from 'sweetalert2';
 
 const MyItems = () => {
     const { user } = useContext(AuthContext)
     const [myItems, setMyItems] = useState([])
 
 
-    
+    const handleDelete = (_id) => {
+        Swal.fire({
+            title: "Are you sure?",
+            text: "You won't be able to revert this!",
+            icon: "warning",
+            showCancelButton: true,
+            confirmButtonColor: "#3085d6",
+            cancelButtonColor: "#d33",
+            confirmButtonText: "Yes, delete it!"
+        }).then((result) => {
+            if (result.isConfirmed) {
+                fetch(`http://localhost:3000/foods/${_id}`, {
+                    method: 'DELETE'
+                })
+                    .then(res => res.json())
+                    .then(data => {
+                        if (data.deletedCount) {
+                            setMyItems(prev => prev.filter(item => item._id !== _id))
+                            Swal.fire({
+                                title: "Deleted!",
+                                text: "Your item has been deleted.",
+                                icon: "success"
+                            });
+                        }
+                    })
+
+            }
+        });
+    }
+
+
 
     useEffect(() => {
         if (user?.email) {
@@ -72,7 +103,7 @@ const MyItems = () => {
                                         <td>{item.addedDate}</td>
                                         <th>
                                             <button className="btn btn-ghost btn-xs bg-green-200 mr-2">Update</button>
-                                            <button className="btn btn-ghost btn-xs bg-red-400">&times;</button>
+                                            <button onClick={() => handleDelete(item._id)} className="btn btn-ghost btn-xs bg-red-400">&times;</button>
                                         </th>
                                     </tr>
                                 ))
