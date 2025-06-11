@@ -1,9 +1,11 @@
 import React, { useContext } from 'react';
 import { AuthContext } from '../Context/AuthContext';
 import { toast } from 'react-toastify';
+import { useNavigate } from 'react-router';
 
 const AddFood = () => {
     const {user} = useContext(AuthContext)
+    const navigate = useNavigate()
 
     const handleAddFood = e =>{
         e.preventDefault();
@@ -49,7 +51,7 @@ const AddFood = () => {
                 <input type="number" name="quantity" placeholder="Quantity" required className="input input-bordered w-full" />
                 <input type="date" name="expiryDate" required className="input input-bordered w-full" />
                 <input type="email" name="email" defaultValue={user.email} className="input input-bordered w-full"  />
-                <button type='submit' className='btn btn-primary mt-3 w-full'>Add Food</button>
+                <button onClick={()=>navigate('/my-items')} type='submit' className='btn btn-primary mt-3 w-full'>Add Food</button>
             </form>
         </div>
     );
