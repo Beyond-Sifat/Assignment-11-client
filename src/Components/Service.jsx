@@ -9,14 +9,14 @@ const Service = () => {
             {/* Grid: Feature Points */}
             <div className="grid md:grid-cols-2 gap-6 text-gray-700 text-lg mb-10">
                 <div>
-                    <p className="mb-2">✔️ Automatically categorizes food by expiry status</p>
-                    <p className="mb-2">✔️ Add, edit, and delete items anytime</p>
-                    <p className="mb-2">✔️ Tracks when items were added and when they'll expire</p>
+                    <p className="mb-2">Automatically categorizes food by expiry status</p>
+                    <p className="mb-2">Add, edit, and delete items anytime</p>
+                    <p className="mb-2">Tracks when items were added and when they'll expire</p>
                 </div>
                 <div>
-                    <p className="mb-2">✔️ Add personal notes for food items</p>
-                    <p className="mb-2">✔️ Sync with your account across devices</p>
-                    <p className="mb-2">✔️ User-friendly digital fridge interface</p>
+                    <p className="mb-2">Add personal notes for food items</p>
+                    <p className="mb-2">Sync with your account across devices</p>
+                    <p className="mb-2">User-friendly digital fridge interface</p>
                 </div>
             </div>
 
