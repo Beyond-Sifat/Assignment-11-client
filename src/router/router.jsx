@@ -10,11 +10,13 @@ import PrivateRoutes from "../Route/PrivateRoute";
 import Fridge from "../Pages/Fridge";
 import FoodDetails from "../Pages/FoodDetails";
 import MyItems from "../Pages/MyItems";
+import Error from "../Pages/Error";
 
 const router = createBrowserRouter([
     {
         path: "/",
         Component: MainLayout,
+        errorElement: <Error></Error>,
         children: [
             {
                 index: true,

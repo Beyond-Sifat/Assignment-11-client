@@ -1,11 +1,7 @@
-import React, { useContext, useState } from 'react';
+import React from 'react';
 import { useLoaderData } from 'react-router';
-import { AuthContext } from '../Context/AuthContext';
-
 const FoodDetails = () => {
     const details = useLoaderData()
-    const { user } = useContext(AuthContext)
-    const [loading, setLoading] = useState(false)
 
 
     // if expiry
@@ -24,7 +20,7 @@ const FoodDetails = () => {
     const expired = isExpired(details.expiryDate);  // if expiry
     const left = daysLeft(details.expiryDate)      // if not expiry
 
-    const canAddNote = user?.email === details.email
+    // const canAddNote = user?.email === details.email
 
 
 
@@ -61,12 +57,13 @@ const FoodDetails = () => {
                     </div>
                 </div>
             </div>
-            <div className='mt-10'>
+            {/* <div className='mt-10'>
+                
                 <button
                 // type='submit'
                 disabled={!canAddNote}
                 className="btn btn-primary mt-3">{loading ? "Adding" : "Add Note"}</button>
-            </div>
+            </div> */}
         </div>
     );
 };
