@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import ExpiredCard from './ExpiredCard';
+import CountUp from 'react-countup';
 
 const Expired = ({foods}) => {
     const [expired, setExpired] = useState([])
@@ -11,12 +12,13 @@ const Expired = ({foods}) => {
     },[foods])
     return (
         <div className='mt-5'>
-             <h2 className="text-2xl font-semibold text-center mb-4">Expired Items</h2>
+            <h2 className="text-3xl font-bold text-center mt-28 mb-16">Expired Items:- <CountUp end={expired.length} duration={8}></CountUp></h2>
              <div className='grid grid-cols-1 md:grid-cols-3 gap-5'>
                 {
                     expired.map(food=><ExpiredCard key={food._id} food={food}></ExpiredCard>)
                 }
              </div>
+             
         </div>
     );
 };

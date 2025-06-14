@@ -1,6 +1,7 @@
 // import React, { useEffect, useState } from 'react';
 import { useEffect, useState } from 'react';
 import NearlyExpiredCard from './NearlyExpiredCard';
+import CountUp from 'react-countup';
 
 const NearlyExpired = ({ foods }) => {
     const [nearlyExpired, setNearlyExpired] = useState([]);
@@ -12,7 +13,7 @@ const NearlyExpired = ({ foods }) => {
             const parsedDate = new Date(trimmed);
             if (!isNaN(parsedDate.getTime())) {
                 return parsedDate;
-            }else {
+            } else {
                 const dateOnly = trimmed.split(',')[0];
                 const [month, day, year] = dateOnly.split('/').map(str => parseInt(str));
                 return new Date(year, month - 1, day);
@@ -46,12 +47,12 @@ const NearlyExpired = ({ foods }) => {
     //         setNearlyExpired(filtered.slice(0, 6))
     // }, [foods])
 
-    
+
 
 
     return (
-        <div className='mt-5'>
-            <h2 className="text-2xl font-semibold text-center mb-4">Nearly Expired Items</h2>
+        <div className='mt-5 '>
+            <h2 className="text-3xl font-bold text-center mt-28 mb-16">Nearly Expired Items:- <CountUp end={nearlyExpired.length} duration={8}></CountUp></h2>
             <div className='grid grid-cols-1 md:grid-cols-3 gap-5'>
                 {
                     nearlyExpired.map(food => <NearlyExpiredCard key={food._id} food={food}></NearlyExpiredCard>)

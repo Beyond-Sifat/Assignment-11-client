@@ -136,9 +136,9 @@ const MyItems = () => {
             </div>
             
 
-           { selectedItem && (
-            <div className="fixed z-50 left-0 top-0 w-full h-full bg-black bg-opacity-50 flex justify-center items-center">
-                    <div className="bg-white p-6 rounded-lg w-96 relative">
+           { selectedItem && ( 
+            <div className="fixed z-50 inset-0 left-0 backdrop-blur-md w-full h-full flex justify-center items-center ">
+                    <div className="bg-[#fffff1] p-10 border-dashed border-2 rounded-lg w-96 relative">
                         <h3 className="text-xl font-bold mb-4">Update: {selectedItem.title}</h3>
                         <form onSubmit={handleUpdate} className="space-y-3">
                             <input name="title" defaultValue={selectedItem.title} className="input input-bordered w-full" />

@@ -1,7 +1,13 @@
-import React from 'react';
+import React, { useContext, useState } from 'react';
 import { useLoaderData } from 'react-router';
+import { AuthContext } from '../Context/AuthContext';
+import Swal from 'sweetalert2';
 const FoodDetails = () => {
     const details = useLoaderData()
+    const { user } = useContext(AuthContext)
+    const [noteInput, setNoteInput] = useState("")
+    const [note, setNote] = useState(details.note || "");
+    const [noteDate, setNoteDate] = useState(details.noteDate || "");
 
 
     // if expiry
@@ -20,13 +26,31 @@ const FoodDetails = () => {
     const expired = isExpired(details.expiryDate);  // if expiry
     const left = daysLeft(details.expiryDate)      // if not expiry
 
-    // const canAddNote = user?.email === details.email
+    const canAddNote = user?.email === details.email
 
+    const handleAddNote = () => {
+        const currentDate = new Date().toLocaleDateString();
 
+        const updatedNote = {
+            note: noteInput,
+            noteDate: currentDate
+        };
 
-
-
-
+        fetch(`http://localhost:3000/foods/${details._id}`, {
+            method: "PATCH",
+            headers: { "Content-Type": "application/json" },
+            body: JSON.stringify(updatedNote)
+        })
+            .then(res => res.json())
+            .then(data => {
+                if (data.modifiedCount > 0) {
+                    setNote(noteInput);
+                    setNoteDate(currentDate);
+                    setNoteInput("")
+                    Swal.fire("Success", "Note added!", "success");
+                }
+            });
+    };
 
 
     return (
@@ -57,13 +81,26 @@ const FoodDetails = () => {
                     </div>
                 </div>
             </div>
-            {/* <div className='mt-10'>
-                
-                <button
-                // type='submit'
-                disabled={!canAddNote}
-                className="btn btn-primary mt-3">{loading ? "Adding" : "Add Note"}</button>
-            </div> */}
+            {canAddNote && (
+                <div className="mt-6">
+                    <h3 className="text-xl font-semibold mb-2">Add Note</h3>
+                    <textarea
+                        value={noteInput}
+                        onChange={(e) => setNoteInput(e.target.value)}
+                        placeholder="Write your note here..."
+                        className="textarea textarea-bordered w-full mb-2"
+                    />
+                    <button onClick={handleAddNote} className="btn btn-primary btn-sm">Add Note</button>
+                </div>
+            )}
+
+            {note && (
+                <div className="mt-4 bg-gray-100 p-3 rounded">
+                    <h4 className="font-semibold">Note:</h4>
+                    <p>{note}</p>
+                    <p className="text-sm text-gray-500 mt-1">Posted on: {noteDate}</p>
+                </div>
+            )}
         </div>
     );
 };

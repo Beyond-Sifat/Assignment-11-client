@@ -10,6 +10,7 @@ const ExpiredCard = ({ food }) => {
             <p>Quantity: {quantity}</p>
             <p>Expiry: {expiryDate}</p>
             <p className="text-red-600 font-semibold">Expired</p>
+            <p>{food.length}</p>
         </div>
     );
 };
