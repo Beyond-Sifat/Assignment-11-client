@@ -2,6 +2,7 @@ import React, { useContext, useState } from 'react';
 import { useLoaderData } from 'react-router';
 import { AuthContext } from '../Context/AuthContext';
 import Swal from 'sweetalert2';
+import axios from 'axios';
 const FoodDetails = () => {
     const details = useLoaderData()
     const { user } = useContext(AuthContext)
@@ -35,21 +36,32 @@ const FoodDetails = () => {
             note: noteInput,
             noteDate: currentDate
         };
-
-        fetch(`http://localhost:3000/foods/${details._id}`, {
-            method: "PATCH",
-            headers: { "Content-Type": "application/json" },
-            body: JSON.stringify(updatedNote)
-        })
-            .then(res => res.json())
-            .then(data => {
-                if (data.modifiedCount > 0) {
+        axios.patch(`http://localhost:3000/foods/${details._id}`, updatedNote)
+            .then(res => {
+                if (res.data.modifiedCount > 0) {
                     setNote(noteInput);
                     setNoteDate(currentDate);
                     setNoteInput("")
                     Swal.fire("Success", "Note added!", "success");
                 }
+            })
+            .catch(error => {
+                console.error('Error updating note:', error);
             });
+        // fetch(`http://localhost:3000/foods/${details._id}`, {
+        //     method: "PATCH",
+        //     headers: { "Content-Type": "application/json" },
+        //     body: JSON.stringify(updatedNote)
+        // })
+        //     .then(res => res.json())
+        //     .then(data => {
+        //         if (data.modifiedCount > 0) {
+        //             setNote(noteInput);
+        //             setNoteDate(currentDate);
+        //             setNoteInput("")
+        //             Swal.fire("Success", "Note added!", "success");
+        //         }
+        //     });
     };
 
 

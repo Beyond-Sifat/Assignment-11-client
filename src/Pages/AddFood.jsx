@@ -2,34 +2,31 @@ import React, { useContext } from 'react';
 import { AuthContext } from '../Context/AuthContext';
 import { toast } from 'react-toastify';
 import { useNavigate } from 'react-router';
+import axios from 'axios';
 
 const AddFood = () => {
-    const {user} = useContext(AuthContext)
+    const { user } = useContext(AuthContext)
     const navigate = useNavigate()
 
-    const handleAddFood = e =>{
+    const handleAddFood = e => {
         e.preventDefault();
         const form = e.target;
         const formData = new FormData(form)
         const newFoodData = Object.fromEntries(formData.entries())
         console.log(newFoodData)
-        newFoodData.addedDate = new Date().toLocaleString("en-BD",{timeZone: "Asia/Dhaka"
-})
+        newFoodData.addedDate = new Date().toLocaleString("en-BD", {
+            timeZone: "Asia/Dhaka"
+        })
 
-        fetch('http://localhost:3000/foods',{
-            method: 'POST',
-            headers: {
-                'content-type' : 'application/json'
-            },
-            body: JSON.stringify(newFoodData)
-        })
-        .then(res =>res.json())
-        .then(data => {
-            if(data.insertedId){
-                toast.success('Food added successfully')
-            }
-            console.log(data)
-        })
+        axios.post('http://localhost:3000/foods', newFoodData)
+            .then(res => {
+                if (res.data.insertedId) {
+                    toast.success('Food added successfully')
+                }
+            })
+            .catch(error=>{
+                console.error("error adding food", error)
+            })
     }
 
 
@@ -50,8 +47,8 @@ const AddFood = () => {
                 </select>
                 <input type="number" name="quantity" placeholder="Quantity" required className="input input-bordered w-full" />
                 <input type="date" name="expiryDate" required className="input input-bordered w-full" />
-                <input type="email" name="email" defaultValue={user.email} className="input input-bordered w-full"  />
-                <button onClick={()=>navigate('/my-items')} type='submit' className='btn btn-primary mt-3 w-full'>Add Food</button>
+                <input type="email" name="email" defaultValue={user.email} className="input input-bordered w-full" />
+                <button onClick={() => navigate('/my-items')} type='submit' className='btn btn-primary mt-3 w-full'>Add Food</button>
             </form>
         </div>
     );

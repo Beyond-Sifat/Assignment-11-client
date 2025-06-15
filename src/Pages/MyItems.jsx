@@ -1,6 +1,7 @@
 import React, { useContext, useEffect, useState } from 'react';
 import { AuthContext } from '../Context/AuthContext';
 import Swal from 'sweetalert2';
+import axios from 'axios';
 
 const MyItems = () => {
     const { user } = useContext(AuthContext)
@@ -19,16 +20,16 @@ const MyItems = () => {
             confirmButtonText: "Yes, delete it!"
         }).then((result) => {
             if (result.isConfirmed) {
-                fetch(`http://localhost:3000/foods/${_id}`, {
-                    method: 'DELETE'
-                })
-                    .then(res => res.json())
-                    .then(data => {
-                        if (data.deletedCount) {
-                            setMyItems(prev => prev.filter(item => item._id !== _id))
-                            Swal.fire( "Deleted!", "Your item has been deleted.", "success");
+                axios.delete(`http://localhost:3000/foods/${_id}`)
+                    .then(res => {
+                        if (res.data.deletedCount) {
+                            setMyItems(prev => prev.filter(item => item._id !== _id));
+                            Swal.fire("Deleted!", "Your item has been deleted.", "success");
                         }
                     })
+                    .catch(error => {
+                        console.error('Error deleting item:', error);
+                    });
             }
         });
     }
@@ -41,24 +42,36 @@ const MyItems = () => {
         const updateFoodInfo = Object.fromEntries(formData.entries())
         console.log(updateFoodInfo);
 
-        fetch(`http://localhost:3000/foods/${selectedItem._id}`, {
-            method: 'PATCH',
-            headers: { 'Content-Type': 'application/json' },
-            body: JSON.stringify(updateFoodInfo)
-        })
-         .then(res => res.json())
-            .then(data =>{
-                 if (data.modifiedCount > 0){
-                     Swal.fire("Updated!", "Your item has been updated.", "success");
-                      const updatedList = myItems.map(item =>
+        axios.patch(`http://localhost:3000/foods/${selectedItem._id}`, updateFoodInfo)
+            .then(res => {
+                if (res.data.modifiedCount > 0) {
+                    Swal.fire("Updated!", "Your item has been updated.", "success");
+                    const updatedList = myItems.map(item =>
                         item._id === selectedItem._id ? { ...item, ...updateFoodInfo } : item
                     );
                     setMyItems(updatedList);
-                    setSelectedItem(null); 
-                 }
-                    
-
+                    setSelectedItem(null);
+                }
             })
+
+        // fetch(`http://localhost:3000/foods/${selectedItem._id}`, {
+        //     method: 'PATCH',
+        //     headers: { 'Content-Type': 'application/json' },
+        //     body: JSON.stringify(updateFoodInfo)
+        // })
+        //     .then(res => res.json())
+        //     .then(data => {
+        //         if (data.modifiedCount > 0) {
+        //             Swal.fire("Updated!", "Your item has been updated.", "success");
+        //             const updatedList = myItems.map(item =>
+        //                 item._id === selectedItem._id ? { ...item, ...updateFoodInfo } : item
+        //             );
+        //             setMyItems(updatedList);
+        //             setSelectedItem(null);
+        //         }
+
+
+        //     })
     }
 
 
@@ -124,7 +137,7 @@ const MyItems = () => {
                                         <td>{item.expiryDate}</td>
                                         <td>{item.addedDate}</td>
                                         <th>
-                                            <button onClick={()=>setSelectedItem(item)} className="btn btn-ghost btn-xs bg-green-200 mr-2">Update</button>
+                                            <button onClick={() => setSelectedItem(item)} className="btn btn-ghost btn-xs bg-green-200 mr-2">Update</button>
                                             <button onClick={() => handleDelete(item._id)} className="btn btn-ghost btn-xs bg-red-400">&times;</button>
                                         </th>
                                     </tr>
@@ -134,10 +147,10 @@ const MyItems = () => {
                     </table >
                 </div >
             </div>
-            
 
-           { selectedItem && ( 
-            <div className="fixed z-50 inset-0 left-0 backdrop-blur-md w-full h-full flex justify-center items-center ">
+
+            {selectedItem && (
+                <div className="fixed z-50 inset-0 left-0 backdrop-blur-md w-full h-full flex justify-center items-center ">
                     <div className="bg-[#fffff1] p-10 border-dashed border-2 rounded-lg w-96 relative">
                         <h3 className="text-xl font-bold mb-4">Update: {selectedItem.title}</h3>
                         <form onSubmit={handleUpdate} className="space-y-3">
@@ -157,7 +170,7 @@ const MyItems = () => {
                         </form>
                     </div>
                 </div>
-                )}
+            )}
         </div>
     );
 };
