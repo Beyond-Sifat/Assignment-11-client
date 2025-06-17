@@ -20,7 +20,7 @@ const router = createBrowserRouter([
         children: [
             {
                 index: true,
-                loader: () => fetch('https://assignment-11-server-gc99lselw-sifats-projects-538560cb.vercel.app/foods'),
+                loader: () => fetch('https://assignment-11-server-48vgtmrp3-sifats-projects-538560cb.vercel.app/foods'),
                 Component: Home
             },
             {
@@ -33,7 +33,7 @@ const router = createBrowserRouter([
             },
             {
                 path: '/fridge',
-                loader: () => fetch('https://assignment-11-server-gc99lselw-sifats-projects-538560cb.vercel.app/foods'),
+                loader: () => fetch('https://assignment-11-server-48vgtmrp3-sifats-projects-538560cb.vercel.app/foods'),
                 Component: Fridge
             },
             {
@@ -46,7 +46,7 @@ const router = createBrowserRouter([
             },
             {
                 path: '/food-details/:id',
-                loader: ({ params }) => fetch(`https://assignment-11-server-gc99lselw-sifats-projects-538560cb.vercel.app/foods/${params.id}`),
+                loader: ({ params }) => fetch(`https://assignment-11-server-48vgtmrp3-sifats-projects-538560cb.vercel.app/foods/${params.id}`),
                 element: <PrivateRoutes><FoodDetails></FoodDetails></PrivateRoutes>
             },
         ]
