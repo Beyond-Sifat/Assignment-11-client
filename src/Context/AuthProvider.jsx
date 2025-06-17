@@ -2,7 +2,7 @@ import React, { useEffect, useState } from 'react';
 import { AuthContext } from './AuthContext';
 import { createUserWithEmailAndPassword, GoogleAuthProvider, onAuthStateChanged, signInWithEmailAndPassword, signInWithPopup, signOut, updateProfile } from 'firebase/auth';
 import { auth } from '../Firebase/firebase.init';
-import axios from 'axios';
+// import axios from 'axios';
 
 const provider = new GoogleAuthProvider()
 
@@ -39,16 +39,16 @@ const AuthProvider = ({ children }) => {
         const unSubscribe = onAuthStateChanged(auth, currentUser => {
             setUser(currentUser);
             setLoading(false);
-            if (currentUser?.email) {
-                const userInfo = { email: currentUser.email }
-                axios.post('https://assignment-11-server-48vgtmrp3-sifats-projects-538560cb.vercel.app/jwt', userInfo, {
-                    withCredentials: true
-                })
-                    .then(res => {
-                        console.log('token after jwt', res.data)
-                    })
-                    .catch(error => console.log(error))
-            }
+            // if (currentUser?.email) {
+            //     const userInfo = { email: currentUser.email }
+            //     axios.post('https://assignment-11-server-j98eqdzcq-sifats-projects-538560cb.vercel.app/jwt', userInfo, {
+            //         withCredentials: true
+            //     })
+            //         .then(res => {
+            //             console.log('token after jwt', res.data)
+            //         })
+            //         .catch(error => console.log(error))
+            // }
         })
         return () => {
             unSubscribe()
