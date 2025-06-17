@@ -18,7 +18,7 @@ const AddFood = () => {
             timeZone: "Asia/Dhaka"
         })
 
-        axios.post('http://localhost:3000/foods', newFoodData
+        axios.post('https://assignment-11-server-wo0bc02l1-sifats-projects-538560cb.vercel.app/foods', newFoodData
             // {withCredentials: true}
         )
             .then(res => {
