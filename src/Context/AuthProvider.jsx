@@ -41,7 +41,7 @@ const AuthProvider = ({ children }) => {
             setLoading(false);
             // if (currentUser?.email) {
             //     const userInfo = { email: currentUser.email }
-            //     axios.post('https://assignment-11-server-r92fgru50-sifats-projects-538560cb.vercel.app/jwt', userInfo, {
+            //     axios.post('https://assignment-11-server-three-silk.vercel.app/jwt', userInfo, {
             //         withCredentials: true
             //     })
             //         .then(res => {

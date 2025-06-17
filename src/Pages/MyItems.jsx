@@ -20,7 +20,7 @@ const MyItems = () => {
             confirmButtonText: "Yes, delete it!"
         }).then((result) => {
             if (result.isConfirmed) {
-                axios.delete(`https://assignment-11-server-r92fgru50-sifats-projects-538560cb.vercel.app/foods/${_id}`
+                axios.delete(`https://assignment-11-server-three-silk.vercel.app/foods/${_id}`
                     // { withCredentials: true}
                 )
                     .then(res => {
@@ -44,7 +44,7 @@ const MyItems = () => {
         const updateFoodInfo = Object.fromEntries(formData.entries())
         console.log(updateFoodInfo);
 
-        axios.patch(`https://assignment-11-server-r92fgru50-sifats-projects-538560cb.vercel.app/foods/${selectedItem._id}`, updateFoodInfo
+        axios.patch(`https://assignment-11-server-three-silk.vercel.app/foods/${selectedItem._id}`, updateFoodInfo
             // {withCredentials: true}
     )
             .then(res => {
@@ -63,7 +63,7 @@ const MyItems = () => {
 
     useEffect(() => {
         if (user?.email) {
-            fetch(`https://assignment-11-server-r92fgru50-sifats-projects-538560cb.vercel.app/my-items?email=${user.email}`, 
+            fetch(`https://assignment-11-server-three-silk.vercel.app/my-items?email=${user.email}`, 
                 // {credentials: 'include'}
             )
                 .then(res => res.json())
