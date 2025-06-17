@@ -20,7 +20,7 @@ const router = createBrowserRouter([
         children: [
             {
                 index: true,
-                loader: ()=>fetch('http://localhost:3000/foods'),
+                loader: ()=>fetch('https://assignment-11-server-beige-zeta.vercel.app/foods'),
                 Component: Home
             },
             {
@@ -33,7 +33,7 @@ const router = createBrowserRouter([
             },
             {
                 path: '/fridge',
-                loader: ()=>fetch('http://localhost:3000/foods'),
+                loader: ()=>fetch('https://assignment-11-server-beige-zeta.vercel.app/foods'),
                 Component: Fridge
             },
             {
@@ -46,7 +46,7 @@ const router = createBrowserRouter([
             },
             {
                 path: '/food-details/:id',
-                loader:({params})=>fetch(`http://localhost:3000/foods/${params.id}`),
+                loader:({params})=>fetch(`https://assignment-11-server-beige-zeta.vercel.app/foods/${params.id}`),
                 element: <PrivateRoutes><FoodDetails></FoodDetails></PrivateRoutes>
             },
         ]
