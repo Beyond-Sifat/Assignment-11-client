@@ -9,7 +9,7 @@ const Footer = () => {
       
       <aside>
         <div className='text-center'>
-          <p className='font-bold text-2xl'>HappyPlants</p>
+          <p className='font-bold text-2xl'>GoodFood</p>
         </div>   
         <p>Copyright © {new Date().getFullYear()} - All right reserved</p>
       </aside>

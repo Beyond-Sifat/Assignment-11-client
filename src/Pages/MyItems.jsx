@@ -20,7 +20,9 @@ const MyItems = () => {
             confirmButtonText: "Yes, delete it!"
         }).then((result) => {
             if (result.isConfirmed) {
-                axios.delete(`http://localhost:3000/foods/${_id}`)
+                axios.delete(`http://localhost:3000/foods/${_id}`, {
+                    withCredentials: true
+                })
                     .then(res => {
                         if (res.data.deletedCount) {
                             setMyItems(prev => prev.filter(item => item._id !== _id));
@@ -42,7 +44,9 @@ const MyItems = () => {
         const updateFoodInfo = Object.fromEntries(formData.entries())
         console.log(updateFoodInfo);
 
-        axios.patch(`http://localhost:3000/foods/${selectedItem._id}`, updateFoodInfo)
+        axios.patch(`http://localhost:3000/foods/${selectedItem._id}`, updateFoodInfo, {
+            withCredentials: true
+        })
             .then(res => {
                 if (res.data.modifiedCount > 0) {
                     Swal.fire("Updated!", "Your item has been updated.", "success");
@@ -53,32 +57,15 @@ const MyItems = () => {
                     setSelectedItem(null);
                 }
             })
-
-        // fetch(`http://localhost:3000/foods/${selectedItem._id}`, {
-        //     method: 'PATCH',
-        //     headers: { 'Content-Type': 'application/json' },
-        //     body: JSON.stringify(updateFoodInfo)
-        // })
-        //     .then(res => res.json())
-        //     .then(data => {
-        //         if (data.modifiedCount > 0) {
-        //             Swal.fire("Updated!", "Your item has been updated.", "success");
-        //             const updatedList = myItems.map(item =>
-        //                 item._id === selectedItem._id ? { ...item, ...updateFoodInfo } : item
-        //             );
-        //             setMyItems(updatedList);
-        //             setSelectedItem(null);
-        //         }
-
-
-        //     })
     }
 
 
 
     useEffect(() => {
         if (user?.email) {
-            fetch(`http://localhost:3000/my-items?email=${user.email}`)
+            fetch(`http://localhost:3000/my-items?email=${user.email}`, {
+                credentials: 'include'
+            })
                 .then(res => res.json())
                 .then(data => {
                     setMyItems(data)
@@ -87,7 +74,7 @@ const MyItems = () => {
     }, [user])
     if (myItems.length === 0) {
 
-        return <div className='p-20 rounded-4xl text-center bg-gray-300'>
+        return <div className='min-h-screen flex flex-col justify-center items-center p-20 rounded-4xl text-center bg-gray-300'>
             <p className="text-xl text-gray-500 my-10">You haven't added any items yet.</p>
         </div>
     }

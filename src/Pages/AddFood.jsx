@@ -18,13 +18,15 @@ const AddFood = () => {
             timeZone: "Asia/Dhaka"
         })
 
-        axios.post('http://localhost:3000/foods', newFoodData)
+        axios.post('http://localhost:3000/foods', newFoodData, {
+            withCredentials: true
+        })
             .then(res => {
                 if (res.data.insertedId) {
                     toast.success('Food added successfully')
                 }
             })
-            .catch(error=>{
+            .catch(error => {
                 console.error("error adding food", error)
             })
     }

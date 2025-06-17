@@ -1,7 +1,7 @@
 import React, { useContext } from 'react';
 import { Link, NavLink } from 'react-router';
 import { AuthContext } from '../Context/AuthContext';
-// import { Tooltip } from 'react-tooltip';
+import { Tooltip } from 'react-tooltip';
 
 const Navbar = () => {
 
@@ -18,26 +18,8 @@ const Navbar = () => {
             })
     }
     const links = <>
-        {/* <li><NavLink className={({ isActive }) => isActive ? "" : ""} to='/'>Home</NavLink></li>
-        <li><NavLink className={({ isActive }) => isActive ? "" : ""} to='/login'>Login</NavLink></li>
-        <li><NavLink className={({ isActive }) => isActive ? "" : ""} to='/register'>Register</NavLink></li>
-        <li><NavLink className={({ isActive }) => isActive ? "" : ""} to='/all-plants'>All Plants</NavLink></li>
-
-        {user && <>
-            <li><NavLink className={({ isActive }) => isActive ? "" : ""} to='/add-plant'>Add Plant</NavLink></li>
-            <li><NavLink className={({ isActive }) => isActive ? "" : ""} to='/my-plants'>My Plants</NavLink></li>
-        </>
-        }
-        {user ? <>
-            <li><NavLink className={({ isActive }) => isActive ? "" : ""} to='/add-plant'>Add Plant</NavLink></li>
-        </> : <>
-            <li><NavLink className={({ isActive }) => isActive ? "" : ""} to='/register'>Register</NavLink></li>
-        </>
-        } */}
-
-
         <li><NavLink to='/'>Home</NavLink></li>
-        <li><NavLink to='/fridge '>Fridge</NavLink></li>
+        <li><NavLink to='/fridge'>Fridge</NavLink></li>
         {user ? (
             <>
                 <li><NavLink to='/add-food'>Add Food</NavLink></li>
@@ -92,10 +74,9 @@ const Navbar = () => {
                                 </div>
                             </div>
                         </div>
-                        {/* <Tooltip id='my-tooltip'>
+                        <Tooltip id='my-tooltip'>
                             <p><small>{user.email}</small></p>
-                        </Tooltip> */}
-                        {/* <span className='mx-4 max-md:hidden'>{user.email}</span> */}
+                        </Tooltip>
                         <button onClick={handleLogOut} className="btn">Sign out</button>
                     </> :
                     <Link to='/login'>Login</Link>

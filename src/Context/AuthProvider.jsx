@@ -2,6 +2,7 @@ import React, { useEffect, useState } from 'react';
 import { AuthContext } from './AuthContext';
 import { createUserWithEmailAndPassword, GoogleAuthProvider, onAuthStateChanged, signInWithEmailAndPassword, signInWithPopup, signOut, updateProfile } from 'firebase/auth';
 import { auth } from '../Firebase/firebase.init';
+import axios from 'axios';
 
 const provider = new GoogleAuthProvider()
 
@@ -10,7 +11,7 @@ const AuthProvider = ({ children }) => {
     const [loading, setLoading] = useState(true)
 
     const createUser = (email, password) => {
-        setLoading(true) 
+        setLoading(true)
         return createUserWithEmailAndPassword(auth, email, password)
     }
 
@@ -19,7 +20,7 @@ const AuthProvider = ({ children }) => {
         return signInWithEmailAndPassword(auth, email, password)
     }
 
-    const updateUser = (updateData) =>{
+    const updateUser = (updateData) => {
         return updateProfile(auth.currentUser, updateData)
     }
 
@@ -29,16 +30,26 @@ const AuthProvider = ({ children }) => {
         return signOut(auth)
     }
 
-    const googleLogin = () =>{
+    const googleLogin = () => {
         setLoading(true)
         return signInWithPopup(auth, provider)
     }
 
     useEffect(() => {
-        const unSubscribe = onAuthStateChanged(auth, (currentUser => {
+        const unSubscribe = onAuthStateChanged(auth, currentUser => {
             setUser(currentUser);
-            setLoading(false)
-        }))
+            setLoading(false);
+            if (currentUser?.email) {
+                const userInfo = { email: currentUser.email }
+                axios.post('http://localhost:3000/jwt', userInfo, {
+                    withCredentials: true
+                })
+                    .then(res => {
+                        console.log('token after jwt', res.data)
+                    })
+                    .catch(error => console.log(error))
+            }
+        })
         return () => {
             unSubscribe()
         }

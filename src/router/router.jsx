@@ -32,7 +32,7 @@ const router = createBrowserRouter([
                 Component: Register
             },
             {
-                path: '/fridge ',
+                path: '/fridge',
                 loader: ()=>fetch('http://localhost:3000/foods'),
                 Component: Fridge
             },
