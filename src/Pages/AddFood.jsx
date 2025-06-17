@@ -18,9 +18,9 @@ const AddFood = () => {
             timeZone: "Asia/Dhaka"
         })
 
-        axios.post('https://assignment-11-server-48vgtmrp3-sifats-projects-538560cb.vercel.app/foods', newFoodData, {
-            withCredentials: true
-        })
+        axios.post('https://assignment-11-server-48vgtmrp3-sifats-projects-538560cb.vercel.app/foods', newFoodData
+            // {withCredentials: true}
+        )
             .then(res => {
                 if (res.data.insertedId) {
                     toast.success('Food added successfully')

@@ -21,7 +21,6 @@ const router = createBrowserRouter([
             {
                 index: true,
                 loader: () => fetch('https://assignment-11-server-48vgtmrp3-sifats-projects-538560cb.vercel.app/foods'),
-                credentials: 'include',
                 Component: Home
             },
             {

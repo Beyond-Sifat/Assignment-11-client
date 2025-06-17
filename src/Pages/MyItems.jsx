@@ -20,9 +20,9 @@ const MyItems = () => {
             confirmButtonText: "Yes, delete it!"
         }).then((result) => {
             if (result.isConfirmed) {
-                axios.delete(`https://assignment-11-server-48vgtmrp3-sifats-projects-538560cb.vercel.app/foods/${_id}`, {
-                    withCredentials: true
-                })
+                axios.delete(`https://assignment-11-server-48vgtmrp3-sifats-projects-538560cb.vercel.app/foods/${_id}`
+                    // { withCredentials: true}
+                )
                     .then(res => {
                         if (res.data.deletedCount) {
                             setMyItems(prev => prev.filter(item => item._id !== _id));
@@ -44,9 +44,9 @@ const MyItems = () => {
         const updateFoodInfo = Object.fromEntries(formData.entries())
         console.log(updateFoodInfo);
 
-        axios.patch(`https://assignment-11-server-48vgtmrp3-sifats-projects-538560cb.vercel.app/foods/${selectedItem._id}`, updateFoodInfo, {
-            withCredentials: true
-        })
+        axios.patch(`https://assignment-11-server-48vgtmrp3-sifats-projects-538560cb.vercel.app/foods/${selectedItem._id}`, updateFoodInfo
+            // {withCredentials: true}
+    )
             .then(res => {
                 if (res.data.modifiedCount > 0) {
                     Swal.fire("Updated!", "Your item has been updated.", "success");
@@ -63,9 +63,9 @@ const MyItems = () => {
 
     useEffect(() => {
         if (user?.email) {
-            fetch(`https://assignment-11-server-48vgtmrp3-sifats-projects-538560cb.vercel.app/my-items?email=${user.email}`, {
-                credentials: 'include'
-            })
+            fetch(`https://assignment-11-server-48vgtmrp3-sifats-projects-538560cb.vercel.app/my-items?email=${user.email}`, 
+                // {credentials: 'include'}
+            )
                 .then(res => res.json())
                 .then(data => {
                     setMyItems(data)
