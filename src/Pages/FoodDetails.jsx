@@ -36,7 +36,7 @@ const FoodDetails = () => {
             note: noteInput,
             noteDate: currentDate
         };
-        axios.patch(`https://assignment-11-server-j98eqdzcq-sifats-projects-538560cb.vercel.app/foods/${details._id}`, updatedNote
+        axios.patch(`http://localhost:3000/foods/${details._id}`, updatedNote
             // {withCredentials:true}
     )
             .then(res => {
