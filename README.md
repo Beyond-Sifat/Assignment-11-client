@@ -7,7 +7,7 @@ The Food Expiry Tracker System is a web app that helps users track food items an
 
 Live Demo
 
-[Live Site Link](https://assignment-11-e4673.web.app)  <!-- Replace with your actual deployed URL -->
+[Live Site Link](https://assignment-11-e4673.web.app)
 
 ---
 
