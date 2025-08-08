@@ -51,4 +51,17 @@ Live Demo
 
 ---
 
-## 🧑‍💻 Installation & Setup
+📚 Additional Resources
+Firebase Documentation
+
+MongoDB Documentation
+
+Tailwind CSS
+
+React Router
+
+Axios
+
+📬 Contact
+For questions or feedback, reach out:
+LinkedIn | Twitter
