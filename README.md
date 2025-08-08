@@ -19,7 +19,6 @@ Live Demo
 - Express.js (backend API)
 - Tailwind CSS / DaisyUI (for styling)
 - React Router
-- Axios / TanStack Query (for API requests)
 
 ---
 
