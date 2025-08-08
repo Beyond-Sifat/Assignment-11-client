@@ -52,16 +52,12 @@ Live Demo
 ---
 
 📚 Additional Resources
-Firebase Documentation
+[Firebase Documentation](https://firebase.google.com/docs)
 
-MongoDB Documentation
+[MongoDB Documentation](https://www.mongodb.com/docs/)
 
-Tailwind CSS
-
-React Router
-
-Axios
+[React Router](https://reactrouter.com/)
 
 📬 Contact
 For questions or feedback, reach out:
-LinkedIn | Twitter
+[LinkedIn](https://www.linkedin.com/in/syed-sifat2004/) 
