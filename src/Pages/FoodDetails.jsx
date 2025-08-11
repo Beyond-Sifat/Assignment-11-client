@@ -38,7 +38,7 @@ const FoodDetails = () => {
         };
         axios.patch(`https://assignment-11-server-three-silk.vercel.app/foods/${details._id}`, updatedNote
             // {withCredentials:true}
-    )
+        )
             .then(res => {
                 if (res.data.modifiedCount > 0) {
                     setNote(noteInput);
@@ -54,28 +54,26 @@ const FoodDetails = () => {
 
 
     return (
-        <div className='max-w-4xl mx-auto my-10 p-6 bg-white rounded-lg shadow-lg pt-16'>
+        <div className='max-w-4xl mx-auto my-10 p-6 bg-white/90 backdrop-blur-sm rounded-lg shadow-lg pt-16 border border-blue-200'>
             <div className='flex flex-col md:flex-row gap-8'>
                 <div className='md:w-1/2'>
-                    <img src={details.image}
-                        alt={details.title}
-                        className='rounded-lg object-cover w-full h-80' />
+                    <img src={details.image} alt={details.title} className='rounded-lg object-cover w-full h-80 border border-indigo-200' />
                 </div>
                 <div className='md:w-1/2 flex flex-col justify-between'>
                     <div>
-                        <h1 className='text-4xl font-bold mb-2'>{details.title}</h1>
-                        <p className='text-lg text-gray-600 mb-4'>Category: <span className='font-semibold'>{details.category}</span></p>
-                        <p className='text-lg mb-2'>Quantity: <span className='font-semibold'>{details.quantity}</span></p>
-                        <p className='text-lg mb-2'>Expiry Date: <span className='font-semibold'>{details.quantity}</span></p>
+                        <h1 className='text-4xl font-bold mb-2 text-indigo-800'>{details.title}</h1>
+                        <p className='text-lg text-sky-800 mb-4'>Category: <span className='font-semibold text-indigo-600'>{details.category}</span></p>
+                        <p className='text-lg text-sky-800 mb-2'>Quantity: <span className='font-semibold text-indigo-600'>{details.quantity}</span></p>
+                        <p className='text-lg text-sky-800 mb-2'>Expiry Date: <span className='font-semibold text-indigo-600'>{details.expiryDate}</span></p>
                         {
                             expired ? (
-                                <span className="inline-block bg-red-600 text-white px-3 py-1 rounded-full font-semibold mt-2">Expired</span>  // if expiry
+                                <span className="inline-block bg-red-600 text-white px-3 py-1 rounded-full font-semibold mt-2">Expired</span>
                             ) : (
-                                <p className="text-green-600 font-semibold mt-2">{left} day{left !== 1 ? 's' : ""} left until expiry</p>         // if not expiry
+                                <p className="text-green-600 font-semibold mt-2">{left} day{left !== 1 ? 's' : ""} left until expiry</p>
                             )
                         }
-                        <h2 className="text-2xl font-semibold mt-6 mb-2">Description</h2>
-                        <p className="text-gray-700 whitespace-pre-line">
+                        <h2 className="text-2xl font-semibold mt-6 mb-2 text-indigo-800">Description</h2>
+                        <p className="text-sky-900 whitespace-pre-line">
                             {details.description || "No description provided."}
                         </p>
                     </div>
@@ -83,22 +81,21 @@ const FoodDetails = () => {
             </div>
             {canAddNote && (
                 <div className="mt-6">
-                    <h3 className="text-xl font-semibold mb-2">Add Note</h3>
+                    <h3 className="text-xl font-semibold mb-2 text-indigo-800">Add Note</h3>
                     <textarea
                         value={noteInput}
                         onChange={(e) => setNoteInput(e.target.value)}
                         placeholder="Write your note here..."
-                        className="textarea textarea-bordered w-full mb-2"
+                        className="textarea textarea-bordered w-full mb-2 border-indigo-200 focus:border-indigo-400"
                     />
-                    <button onClick={handleAddNote} className="btn btn-primary btn-sm">Add Note</button>
+                    <button onClick={handleAddNote} className="btn bg-gradient-to-r from-sky-400 to-indigo-500 text-white hover:opacity-90 btn-sm">Add Note</button>
                 </div>
             )}
-
             {note && (
-                <div className="mt-4 bg-gray-100 p-3 rounded">
-                    <h4 className="font-semibold">Note:</h4>
-                    <p>{note}</p>
-                    <p className="text-sm text-gray-500 mt-1">Posted on: {noteDate}</p>
+                <div className="mt-4 bg-sky-50 p-3 rounded border border-sky-200">
+                    <h4 className="font-semibold text-indigo-800">Note:</h4>
+                    <p className="text-sky-900">{note}</p>
+                    <p className="text-sm text-sky-600 mt-1">Posted on: {noteDate}</p>
                 </div>
             )}
         </div>
