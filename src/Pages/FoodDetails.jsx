@@ -54,7 +54,7 @@ const FoodDetails = () => {
 
 
     return (
-        <div className='max-w-4xl mx-auto my-10 p-6 bg-white rounded-lg shadow-lg'>
+        <div className='max-w-4xl mx-auto my-10 p-6 bg-white rounded-lg shadow-lg pt-16'>
             <div className='flex flex-col md:flex-row gap-8'>
                 <div className='md:w-1/2'>
                     <img src={details.image}

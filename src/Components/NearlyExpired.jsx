@@ -36,17 +36,6 @@ const NearlyExpired = ({ foods }) => {
         setNearlyExpired(filtered.slice(0, 6));
     }, [foods]);
 
-    // useEffect(() => {
-    //     const today = new Date();
-    //     const fiveDays = new Date();
-    //     fiveDays.setDate(today.getDate() + 5);
-    //     const filtered = foods.filter(food => {
-    //         const expiry = parseDate(food.expiryDate);
-    //         return expiry >= today && expiry <= fiveDays;
-    //     }),
-    //         setNearlyExpired(filtered.slice(0, 6))
-    // }, [foods])
-
 
 
 

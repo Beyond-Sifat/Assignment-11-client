@@ -10,7 +10,7 @@ const Home = () => {
     const foods = useLoaderData();
     // console.log(data);
     return (
-        <div>
+        <div className='pt-16 '>
             <Banner></Banner>
             <NearlyExpired foods={foods}></NearlyExpired>
             <Expired foods={foods}></Expired>

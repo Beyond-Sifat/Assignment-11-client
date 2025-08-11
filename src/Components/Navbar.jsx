@@ -20,20 +20,19 @@ const Navbar = () => {
     const links = <>
         <li><NavLink to='/'>Home</NavLink></li>
         <li><NavLink to='/fridge'>Fridge</NavLink></li>
-        {user ? (
+        {user && (
             <>
                 <li><NavLink to='/add-food'>Add Food</NavLink></li>
                 <li><NavLink to='/my-items'>My Items</NavLink></li>
             </>
-        ) : (
-            <li><NavLink to='/register'>Register</NavLink></li>
         )}
+        <li><NavLink to='/register'>Register</NavLink></li>
 
 
 
     </>
     return (
-        <div className="navbar bg-base-100 bg-gradient-to-r from-blue-700 via-sky-700 to-indigo-400 shadow-sm text-white">
+        <div className="navbar bg-base-100 bg-gradient-to-r from-blue-700 via-sky-700 to-indigo-400 shadow-sm text-white sticky top-0 left-0 w-full z-50 ">
             <div className="navbar-start">
                 <a className="btn btn-ghost text-xl">GoodFood</a>
             </div>

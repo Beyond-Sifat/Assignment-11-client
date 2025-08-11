@@ -15,7 +15,7 @@ const Fridge = () => {
     };
 
     return (
-        <div className='my-10 max-w-6xl mx-auto'>
+        <div className='my-10 max-w-6xl mx-auto pt-16'>
             <h2 className='text-3xl font-bold text-center mb-8'>Fridge Inventory</h2>
             <div className='w-[80%]'>
                 {
