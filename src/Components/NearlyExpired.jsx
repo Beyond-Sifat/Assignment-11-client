@@ -41,7 +41,9 @@ const NearlyExpired = ({ foods }) => {
 
     return (
         <div className='mt-5 '>
-            <h2 className="text-3xl font-bold text-center mt-28 mb-16">Nearly Expired Items:- <CountUp end={nearlyExpired.length} duration={8}></CountUp></h2>
+            <h2 className="text-3xl font-extrabold text-center mt-28 mb-16 bg-gradient-to-r from-blue-700 to-indigo-600 bg-clip-text text-transparent">
+                Nearly Expired Items:- <CountUp end={nearlyExpired.length} duration={8}></CountUp>
+            </h2>
             <div className='grid grid-cols-1 md:grid-cols-3 gap-5'>
                 {
                     nearlyExpired.map(food => <NearlyExpiredCard key={food._id} food={food}></NearlyExpiredCard>)

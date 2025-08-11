@@ -1,12 +1,8 @@
-// import React, { useContext } from 'react';
 import { useLoaderData, useNavigate } from 'react-router';
-import { AuthContext } from '../Context/AuthContext';
 
 const Fridge = () => {
     const foods = useLoaderData()
     const navigate = useNavigate()
-    // const { user } = useContext(AuthContext)
-    // console.log(use.accessToken)
 
     const isExpired = (expireDate) => {
         const now = new Date();
@@ -16,7 +12,7 @@ const Fridge = () => {
 
     return (
         <div className='my-10 max-w-6xl mx-auto pt-16'>
-            <h2 className='text-3xl font-bold text-center mb-8'>Fridge Inventory</h2>
+            <h2 className='text-3xl font-bold text-center mb-10 bg-gradient-to-r from-blue-600 via-sky-500 to-indigo-500 bg-clip-text text-transparent'>Fridge Inventory</h2>
             <div className='w-[80%]'>
                 {
                     foods.map((food) => (
