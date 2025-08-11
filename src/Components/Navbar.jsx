@@ -33,7 +33,7 @@ const Navbar = () => {
 
     </>
     return (
-        <div className="navbar bg-base-100 bg-gradient-to-r from-blue-500 via-sky-500 to-indigo-400 shadow-sm text-white">
+        <div className="navbar bg-base-100 bg-gradient-to-r from-blue-700 via-sky-700 to-indigo-400 shadow-sm text-white">
             <div className="navbar-start">
                 <a className="btn btn-ghost text-xl">GoodFood</a>
             </div>

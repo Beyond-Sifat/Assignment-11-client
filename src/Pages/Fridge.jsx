@@ -1,9 +1,12 @@
-import React from 'react';
+// import React, { useContext } from 'react';
 import { useLoaderData, useNavigate } from 'react-router';
+import { AuthContext } from '../Context/AuthContext';
 
 const Fridge = () => {
     const foods = useLoaderData()
     const navigate = useNavigate()
+    // const { user } = useContext(AuthContext)
+    // console.log(use.accessToken)
 
     const isExpired = (expireDate) => {
         const now = new Date();
