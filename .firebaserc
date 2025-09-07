@@ -1,5 +1,18 @@
 {
   "projects": {
     "default": "assignment-11-e4673"
-  }
+  },
+  "targets": {
+    "assignment-11-e4673": {
+      "hosting": {
+        "default": [
+          "assignment-11-e4673"
+        ],
+        "track-food": [
+          "track-food"
+        ]
+      }
+    }
+  },
+  "etags": {}
 }

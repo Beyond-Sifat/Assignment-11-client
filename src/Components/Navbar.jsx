@@ -34,7 +34,7 @@ const Navbar = () => {
     return (
         <div className="navbar bg-base-100 bg-gradient-to-r from-blue-700 via-sky-700 to-indigo-400 shadow-sm text-white sticky top-0 left-0 w-full z-50 ">
             <div className="navbar-start">
-                <a className="text-xl">GoodFood</a>
+                <a className="text-xl">Track Food</a>
             </div>
             <div className="navbar-center hidden lg:flex">
                 <ul className="menu menu-horizontal px-1">
